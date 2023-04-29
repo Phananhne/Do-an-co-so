@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Do_an_co_so.Models.Categories>
+<ul class="nav-bar">
+    @foreach (var item in Model)
+    {
+        <li><a href="#">@item.CategoryName</a></li>
+    }
+</ul>

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="hero__item set-bg" data-setbg="/img/hero/banner.jpg" style="    width: 100%;margin-left: 300px;margin-top: -170px;">
+                <div class="hero__text">
+                    <span>Trái cây tươi, thức ăn ngon</span>
+                    <h2>Rau <br />100% tự nhiên, không hóa chất</h2>
+                    <p>Giao hàng miễn phí cho tất cả đơn hàng từ 200K</p>
+                    <a href="#" class="primary-btn">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Categories Section Begin -->
+<section class="categories">
+    @await Component.InvokeAsync("Navbar")
+    </section>
+<!-- Categories Section End -->
+<!-- Featured Section Begin -->
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Sản phẩm nổi bật</h2>
+                </div>
+                @*<div class="featured__controls">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>
+                       @* <li data-filter=".oranges">Oranges</li>
+                        <li data-filter=".fresh-meat">Fresh Meat</li>
+                        <li data-filter=".vegetables">Vegetables</li>
+                        <li data-filter=".fastfood">Fastfood</li>*@
+                        
+                    @*</ul>*@
+                @await Component.InvokeAsync("feature_product")
+                </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("feature_filter")
+    </div>
+</section>
+<!-- Featured Section End -->
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="/img/banner/banner-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="/img/banner/banner-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+<!-- Latest Product Section Begin -->
+<section class="latest-product spad">
+   @await Component.InvokeAsync("containerhome")
+</section>
+<!-- Latest Product Section End -->
+<!-- Blog Section Begin -->
+<section class="from-blog spad">
+   @await Component.InvokeAsync("fromtheblog")
+</section>
+<!-- Blog Section End -->
