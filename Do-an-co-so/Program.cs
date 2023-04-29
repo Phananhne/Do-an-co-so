@@ -5,12 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Do_an_co_soContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Do_an_co_soContext") ?? throw new InvalidOperationException("Connection string 'Do_an_co_soContext' not found.")));
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
