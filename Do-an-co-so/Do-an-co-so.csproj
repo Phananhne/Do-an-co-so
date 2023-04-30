@@ -5,17 +5,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Do_an_co_so</RootNamespace>
+    <UserSecretsId>79a84bd6-1644-4699-b3b2-88b63077dc16</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.2" />
     <PackageReference Include="MailKit" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+    <PackageReference Include="NuGet.Repositories" Version="4.2.0" />
     <PackageReference Include="Range" Version="3.0.6" />
     <PackageReference Include="Repositories" Version="0.1.15" />
     <PackageReference Include="X.PagedList" Version="8.4.7" />
@@ -23,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\" />
+    <Folder Include="Areas\Admin\Views\AdmAccount\" />
   </ItemGroup>
 
 </Project>

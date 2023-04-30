@@ -24,20 +24,20 @@ namespace Do_an_co_so.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-              return _context.Customer != null ? 
-                          View(await _context.Customer.ToListAsync()) :
+              return _context.Customers != null ? 
+                          View(await _context.Customers.ToListAsync()) :
                           Problem("Entity set 'Do_an_co_soContext.Customer'  is null.");
         }
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Customer == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customer
+            var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
@@ -72,12 +72,12 @@ namespace Do_an_co_so.Controllers
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Customer == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customer.FindAsync(id);
+            var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -123,12 +123,12 @@ namespace Do_an_co_so.Controllers
         // GET: Customers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Customer == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customer
+            var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
@@ -143,14 +143,14 @@ namespace Do_an_co_so.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Customer == null)
+            if (_context.Customers == null)
             {
                 return Problem("Entity set 'Do_an_co_soContext.Customer'  is null.");
             }
-            var customer = await _context.Customer.FindAsync(id);
+            var customer = await _context.Customers.FindAsync(id);
             if (customer != null)
             {
-                _context.Customer.Remove(customer);
+                _context.Customers.Remove(customer);
             }
             
             await _context.SaveChangesAsync();
@@ -159,7 +159,7 @@ namespace Do_an_co_so.Controllers
 
         private bool CustomerExists(int id)
         {
-          return (_context.Customer?.Any(e => e.CustomerId == id)).GetValueOrDefault();
+          return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
         }
         
     }

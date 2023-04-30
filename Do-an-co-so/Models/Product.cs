@@ -26,6 +26,8 @@ namespace Do_an_co_so.Models
 
         [ForeignKey("ProductRating")]
         public int ProductRating { get; set; }
-        public virtual ProductRating? Productrating { get; set; }
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
+        public virtual ICollection<ProductRating>? ProductRatings { get; set; }
+        public virtual ICollection<Favorite>? Favorites { get; set; }
     }
 }

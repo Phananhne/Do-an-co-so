@@ -121,7 +121,7 @@
                                     <div class="owl-stage" style="transform: translate3d(-810px, 0px, 0px); transition: all 1.2s ease 0s; width: 1620px;">
                                         <div class="owl-item cloned" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.ProductDateCreated).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductDateCreated).Take(3))
                                                 {
                                                     <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="owl-item cloned" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.Productrating).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(3))
                                                 {
                                                     <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -152,7 +152,7 @@
                                             </div>
                                         </div><div class="owl-item" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.ProductName).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductName).Take(3))
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -167,7 +167,7 @@
                                             </div>
                                         </div><div class="owl-item active" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.ProductAmount).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductAmount).Take(3))
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -182,7 +182,7 @@
                                             </div>
                                         </div><div class="owl-item cloned" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.ProductDateCreated).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductDateCreated).Take(3))
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -197,7 +197,7 @@
                                             </div>
                                         </div><div class="owl-item cloned" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Product.OrderByDescending(p => p.ProductDateCreated).Take(3))
+                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductDateCreated).Take(3))
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
@@ -227,7 +227,7 @@
                     </div>
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">
-                             @foreach (var item in db.Product.OrderByDescending(p => p.ProductPrice).Take(6))
+                             @foreach (var item in db.Products.OrderByDescending(p => p.ProductPrice).Take(6))
                                 {
                                 <div class="col-lg-4">
                                

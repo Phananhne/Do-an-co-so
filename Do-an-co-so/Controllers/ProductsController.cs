@@ -22,20 +22,20 @@ namespace Do_an_co_so.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var do_an_co_soContext = _context.Product.Include(p => p.Categories);
+            var do_an_co_soContext = _context.Products.Include(p => p.Categories);
 
-            return View(_context.Product.ToList());
+            return View(_context.Products.ToList());
         }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .Include(p => p.Categories)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
@@ -73,12 +73,12 @@ namespace Do_an_co_so.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -126,12 +126,12 @@ namespace Do_an_co_so.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .Include(p => p.Categories)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
@@ -147,14 +147,14 @@ namespace Do_an_co_so.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Product == null)
+            if (_context.Products == null)
             {
                 return Problem("Entity set 'Do_an_co_soContext.Product'  is null.");
             }
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
-                _context.Product.Remove(product);
+                _context.Products.Remove(product);
             }
             
             await _context.SaveChangesAsync();
@@ -163,7 +163,7 @@ namespace Do_an_co_so.Controllers
 
         private bool ProductExists(int id)
         {
-          return (_context.Product?.Any(e => e.ProductId == id)).GetValueOrDefault();
+          return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
     }
 }
