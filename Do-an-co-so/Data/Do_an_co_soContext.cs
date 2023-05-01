@@ -9,17 +9,74 @@ namespace Do_an_co_so.Data
 {
     public class Do_an_co_soContext : DbContext
     {
-        public Do_an_co_soContext (DbContextOptions<Do_an_co_soContext> options)
-            : base(options)
+        public Do_an_co_soContext(DbContextOptions<Do_an_co_soContext> options) : base(options)
         {
         }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<ProductRating> ProductRatings { get; set; }
+        public DbSet<Banner> Blogs { get; set; }
+        public DbSet<Token> Tokens { get; set; }
+        public DbSet<Banner> Banners { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
-        public DbSet<Do_an_co_so.Models.Blog> Blog { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Admin>().ToTable("Admin");
+            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<OrderDetail>().ToTable("OrderDetail");
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<ProductRating>().ToTable("ProductRating");
+            modelBuilder.Entity<Banner>().ToTable("Blog");
+            modelBuilder.Entity<Token>().ToTable("Token");
+            modelBuilder.Entity<Banner>().ToTable("Banner");
+            modelBuilder.Entity<Favorite>().ToTable("Favorite");
 
-        public DbSet<Do_an_co_so.Models.Product>? Product { get; set; }
+            modelBuilder.Entity<OrderDetail>()
+                .HasKey(c => new { c.ProductId, c.OrderId });
 
-        public DbSet<Do_an_co_so.Models.Customer>? Customer { get; set; }
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.OrderDetails);
 
-        public DbSet<Do_an_co_so.Models.Categories>? Categories { get; set; }
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.OrderDetails);
+
+            modelBuilder.Entity<Favorite>()
+               .HasKey(c => new { c.ProductId, c.CustomerId });
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(e => e.Favorites);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.Favorites);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(g => g.ProductRatings);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(g => g.ProductRatings);
+
+            modelBuilder.Entity<Product>()
+               .HasMany(g => g.Favorites);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(g => g.Favorites);
+
+            modelBuilder.Entity<Admin>()
+                .HasIndex(g => g.AdminUserName)
+                .IsUnique();
+
+            modelBuilder.Entity<Customer>()
+                .HasIndex(g => g.CustomerUserName)
+                .IsUnique();
+
+        }
+
+        public DbSet<Do_an_co_so.Models.Blog>? Blog { get; set; }
     }
 }

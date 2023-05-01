@@ -29,7 +29,7 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
-            @foreach (var item in db.Product.OrderByDescending(p => p.Productrating).Take(1)){
+            @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(1)){
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
@@ -57,7 +57,7 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <span>(@item.Productrating reviews)</span>
+                            <span>(@item.ProductRatings reviews)</span>
                     </div>
                     <div class="product__details__price">@item.ProductPrice</div>
                     <p>
@@ -75,7 +75,7 @@
                     <ul>
                             <li><b>Tình trạng: </b> <span>Còn hàng</span></li>
                             <li><b>Vận chuyển  </b> <span>01 ngày <samp>Nhận hàng miễn phí ngay hôm nay</samp></span></li>
-                            <li><b>Đánh giá sản phẩm: </b> <span></span>@item.Productrating</li>
+                            <li><b>Đánh giá sản phẩm: </b> <span></span>@item.ProductRatings</li>
                         <li>
                             <b>Chia sẻ với</b>
                             <div class="share">
@@ -101,7 +101,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                               aria-selected="false">Đánh giá <span>@item.Productrating sao</span></a>
+                               aria-selected="false">Đánh giá <span>@item.ProductRatings sao</span></a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -150,7 +150,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach (var item in db.Product.OrderByDescending(p => p.ProductDateCreated).Take(4))
+            @foreach (var item in db.Products.OrderByDescending(p => p.ProductDateCreated).Take(4))
             {
                 <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">

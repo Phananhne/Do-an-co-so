@@ -16,6 +16,6 @@ namespace Do_an_co_so.Models
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         public virtual Customer? Customer { get; set; }
-
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

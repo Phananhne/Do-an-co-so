@@ -11,6 +11,11 @@ namespace Do_an_co_so.Models
 
         public DateTime Expiry { get; set; }
 
-
+        public Token(string customerUserName, string tokenValue, DateTime expiry)
+        {
+            CustomerUserName = customerUserName;
+            TokenValue = tokenValue;
+            Expiry = expiry;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Do_an_co_so.Models
         public int CustomerId { get; set; }
         public string CustomerFullName { get; set; }
         public string CustomerUserName { get; set; }
-            
+
         public string CustomerPassword { get; set; }
 
         public DateTime CustomerDateCreated { get; set; }
@@ -19,5 +19,8 @@ namespace Do_an_co_so.Models
         public bool CustomerState { get; set; }
 
         public string CustomerImage { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<ProductRating> ProductRatings { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
     }
 }
