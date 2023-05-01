@@ -29,7 +29,12 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
-            @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(1)){
+            @foreach (var item in db.Products
+            .OrderByDescending(p => p.ProductRatings
+            .Where(pr => pr.ProductId == p.ProductId)
+            .Average(pr => pr.Stars))
+            .Take(1)
+            .AsEnumerable()){
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">

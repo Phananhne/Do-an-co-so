@@ -13,7 +13,7 @@ namespace Do_an_co_so.Repositories
 
         public Table[] GetRevenueStructure(int year)
         {
-            return _context.OrderDetail
+            return _context.OrderDetails
                            .Where(o => o.Order.DayOrder.Year == year)
                            .GroupBy(d => new { d.Product.Categories.CategoryId, d.Product.Categories.CategoryName })
                            .Select(t => new Table

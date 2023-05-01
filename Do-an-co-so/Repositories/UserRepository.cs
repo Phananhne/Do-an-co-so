@@ -60,7 +60,7 @@ namespace Do_an_co_so.Repositories
         }
         private Customer GetCustomer(int id)
         {
-            return _context.Customer.Find(id);
+            return _context.Customers.Find(id);
         }
         public InforViewModel GetUserInfor(int id)
         {
@@ -77,11 +77,11 @@ namespace Do_an_co_so.Repositories
         }
         private Customer GetCustomer(string userName)
         {
-            return _context.Customer.FirstOrDefault(user => user.CustomerUserName == userName);
+            return _context.Customers.FirstOrDefault(user => user.CustomerUserName == userName);
         }
         public CookieUserItem Validate(LoginViewModel model)
         {
-            var userRecords = _context.Customer.Where(x => x.CustomerUserName == model.UserName);
+            var userRecords = _context.Customers.Where(x => x.CustomerUserName == model.UserName);
 
             var results = userRecords.AsEnumerable()
             .Where(m => m.CustomerPassword == Encode(model.Password))
@@ -107,7 +107,7 @@ namespace Do_an_co_so.Repositories
                 CustomerImage = "avatar.jpg",
                 CustomerPhone = "0905726748"
             };
-            _context.Customer.Add(user);
+            _context.Customers.Add(user);
             _context.SaveChanges();
 
             return new CookieUserItem
@@ -122,17 +122,17 @@ namespace Do_an_co_so.Repositories
         {
             string token = ReturnToken(64);
             Token toKen = new Token(customerUserName, token, DateTime.Now.AddMinutes(2));
-            _context.Token.Add(toKen);
+            _context.Tokens.Add(toKen);
             _context.SaveChanges();
             return "http://binhdinhfood-001-site1.dtempurl.com/User/ResetPassword?user=" + customerUserName + "&token=" + token;
         }
         public async Task<bool> HaveAccount(ForgotViewModel model)
         {
-            return await _context.Customer.AnyAsync(x => x.CustomerUserName == model.UserName && x.CustomerEmail == model.Email);
+            return await _context.Customers.AnyAsync(x => x.CustomerUserName == model.UserName && x.CustomerEmail == model.Email);
         }
         public async Task<bool> HaveAccount(string userName, string password)
         {
-            return await _context.Customer.AnyAsync(_context => _context.CustomerUserName == userName && _context.CustomerPassword == Encode(password));
+            return await _context.Customers.AnyAsync(_context => _context.CustomerUserName == userName && _context.CustomerPassword == Encode(password));
         }
         public async Task ResetPassWord(ResetViewModel model)
         {

@@ -137,7 +137,12 @@
                                         </div>
                                         <div class="owl-item cloned" style="width: 270px;">
                                             <div class="latest-prdouct__slider__item">
-                                                @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(3))
+                                              @foreach (var item in db.Products
+                                                .OrderByDescending(p => p.ProductRatings
+                                                    .Where(pr => pr.ProductId == p.ProductId)
+                                                    .Average(pr => pr.Stars))
+                                                .Take(3)
+                                                .AsEnumerable())
                                                 {
                                                     <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
