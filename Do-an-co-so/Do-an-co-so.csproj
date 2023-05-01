@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\AdmAccount\" />
+    <Folder Include="Areas\Admin\Views\AdmStatistics\Components\StaticOrdersByUsersComponent\" />
   </ItemGroup>
 
 </Project>
