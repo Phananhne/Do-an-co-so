@@ -14,7 +14,7 @@ namespace Do_an_co_so.Repositories
         // get list all product
         public List<Table> GetListProduct()
         {
-            return _context.Products.Select(x => new Table
+            return _context.Product.Select(x => new Table
             {
                 Key = x.ProductName,
                 Value = x.ProductId
@@ -27,7 +27,7 @@ namespace Do_an_co_so.Repositories
             for (int month = 1; month <= 12; month++)
             {
                 //data[month] 
-                var product = _context.Products.Include(x => x.OrderDetails).ThenInclude(y => y.Order).FirstOrDefault(x => x.ProductId == productId);
+                var product = _context.Product.Include(x => x.OrderDetails).ThenInclude(y => y.Order).FirstOrDefault(x => x.ProductId == productId);
 
                 if (product != null)
                 {
@@ -60,7 +60,7 @@ namespace Do_an_co_so.Repositories
             Table[] data = new Table[13];
             for (int month = 1; month <= 12; month++)
             {
-                var product = _context.Products.Include(x => x.OrderDetails).ThenInclude(y => y.Order).FirstOrDefault(x => x.ProductId == productId);
+                var product = _context.Product.Include(x => x.OrderDetails).ThenInclude(y => y.Order).FirstOrDefault(x => x.ProductId == productId);
                 if (product != null)
                 {
                     var dataInMonth = product.OrderDetails
@@ -136,7 +136,7 @@ namespace Do_an_co_so.Repositories
 
         public async Task UpdateAmount(int id)
         {
-            Product product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
+            Product product = await _context.Product.FirstOrDefaultAsync(x => x.ProductId == id);
             product.ProductAmount = product.ProductAmount - 1;
             _context.Update(product);
             await _context.SaveChangesAsync();
@@ -145,7 +145,7 @@ namespace Do_an_co_so.Repositories
         public async Task UpdateRating(int id)
         {
             int countStar = (int)_context.ProductRatings.Where(x => x.ProductId == id).Select(x => x.Stars).Average();
-            Product product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
+            Product product = await _context.Product.FirstOrDefaultAsync(x => x.ProductId == id);
             product.ProductRating = countStar;
             _context.Update(product);
             await _context.SaveChangesAsync();

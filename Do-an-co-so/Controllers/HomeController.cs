@@ -24,7 +24,7 @@ namespace Do_an_co_so.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Categories.ToList());
+            return View();
         }
 
         public IActionResult Privacy()

@@ -14,7 +14,7 @@
                     <div class="latest-prdouct__slider__item">
 
 
-                        @foreach (var item in db.Products.OrderByDescending(p => p.ProductDateCreated).Take(3))
+                        @foreach (var item in db.Product.OrderByDescending(p => p.ProductDateCreated).Take(3))
                         {
                              <a href="#" class="latest-product__item">
                                 <div class="latest-product__item__pic">
@@ -38,7 +38,7 @@
                 <h4>Sản phẩm đánh giá nhiều nhất</h4>
                 <div class="latest-product__slider owl-carousel">
                     <div class="latest-prdouct__slider__item">
-                        @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(3))
+                        @foreach (var item in db.Product.OrderByDescending(p => p.ProductRatings).Take(3))
                         {
                             <a href="#" class="latest-product__item">
                                 <div class="latest-product__item__pic">
@@ -59,7 +59,7 @@
                 <h4>Sản phẩm review cao nhất</h4>
                 <div class="latest-product__slider owl-carousel">
                     <div class="latest-prdouct__slider__item">
-                        @foreach (var item in db.Products.OrderByDescending(p => p.ProductRatings).Take(3))
+                        @foreach (var item in db.Product.OrderByDescending(p => p.ProductRatings).Take(3))
                         {
                             <a href="#" class="latest-product__item">
                                 <div class="latest-product__item__pic">

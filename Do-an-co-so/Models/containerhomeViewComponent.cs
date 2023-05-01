@@ -13,7 +13,7 @@ namespace Do_an_co_so.Models
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(_context.Products.ToList());
+            return View(_context.Product.ToList());
         }
     }
 }
