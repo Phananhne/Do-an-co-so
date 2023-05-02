@@ -74,12 +74,17 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a asp-action="Index" asp-controller="Home">Trang chủ</a></li>
+
+                            @*<li> <a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\home\index.cshtml">Trang chủ</a></li>*@
                             <li><a asp-action="Shop" asp-controller="Home">Sản phẩm</a></li>
+                           @* <li> <a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\home\shop.cshtml">Sản phẩm</a></li>*@
                             <li>
-                                <a asp-action="Shopdetail" asp-controller="Home">Danh mục</a>
+                                <a asp-action="Shopdetail" asp-controller="Cart">Danh mục</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a asp-action="Shopdetail" asp-controller="Cart">Chi tiết sản phẩm</a></li>
+                                   @* <li><a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\cart\shopdetail.cshtml">Chi tiết sản phẩm</a></li>*@
                                     <li><a asp-action="Index" asp-controller="Cart">Giỏ hàng</a></li>
+                                   @* <li><a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\cart\index.cshtml">Giỏ hàng</a></li>*@
                                     <li><a asp-action="Checkout" asp-controller="Cart">Thanh toán</a></li>
                                     <li><a asp-action="Blogdetail" asp-controller="Blogs">Chi tiết bài viết</a></li>
                                 </ul>
