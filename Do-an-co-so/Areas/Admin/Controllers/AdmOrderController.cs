@@ -22,7 +22,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var do_an_co_soContext = _context.Orders.Include(o => o.Customer);
-            return View(await do_an_co_soContext.ToListAsync());
+            return View(await _context.Orders.ToListAsync());
         }
         public async Task<IActionResult> Details(int? id)
         {

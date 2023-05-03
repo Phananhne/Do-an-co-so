@@ -6,7 +6,7 @@
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Đặc sản địa phương</title>
 
     <!-- Google Font -->
@@ -75,9 +75,9 @@
                         <ul>
                             <li><a asp-action="Index" asp-controller="Home">Trang chủ</a></li>
 
-                            @*<li> <a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\home\index.cshtml">Trang chủ</a></li>*@
-                            <li><a asp-action="Shop" asp-controller="Home">Sản phẩm</a></li>
-                           @* <li> <a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\home\shop.cshtml">Sản phẩm</a></li>*@
+                            @*<li><a href="/Home/Index.cshtml">Trang chủ</a></li>*@
+                           @* <li><a asp-action="Shop" asp-controller="Home">Sản phẩm</a></li>*@
+                            <li><a href="@Url.Action("Shop", "Home")">Sản phẩm</a></li>
                             <li>
                                 <a asp-action="Shopdetail" asp-controller="Cart">Danh mục</a>
                                 <ul class="header__menu__dropdown">

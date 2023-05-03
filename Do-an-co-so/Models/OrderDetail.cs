@@ -15,7 +15,7 @@ namespace Do_an_co_so.Models
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
 
     }
 }
