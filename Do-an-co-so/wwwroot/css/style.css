@@ -417,6 +417,7 @@ ol {
 
 .header__menu {
 	padding: 24px 0;
+	margin-left: -100px;
 }
 
 .header__menu ul li {
@@ -620,6 +621,7 @@ ol {
 	padding-left: 40px;
 	padding-top: 10px;
 	padding-bottom: 12px;
+	background-color: whitesmoke;
 }
 
 .hero__categories ul li {
@@ -1042,6 +1044,7 @@ ol {
 	display: flex;
 	align-items: center;
 	padding: 45px 0 40px;
+	margin-top: -130px;
 }
 
 .breadcrumb__text h2 {
@@ -2472,6 +2475,7 @@ ol {
 	height: 350px;
 	display: flex;
 	align-items: center;
+	margin-top: -160px;
 }
 
 .blog__details__hero__text {
@@ -2922,6 +2926,7 @@ ol {
 	}
 	.hero__categories ul {
 		padding-left: 20px;
+		background-color: whitesmoke;
 	}
 	.latest-product__slider.owl-carousel .owl-nav {
 		right: 0;

@@ -2,6 +2,6 @@
 <ul class="nav-bar">
     @foreach (var item in Model)
     {
-        <li><a href="#">@item.CategoryName</a></li>
+        <li><a asp-action="Shopdetail" asp-controller="Cart">@item.CategoryName</a></li>
     }
 </ul>
