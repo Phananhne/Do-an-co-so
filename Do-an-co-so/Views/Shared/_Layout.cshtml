@@ -13,14 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> Dacsandiaphuong@gmail.com</li>
+                                <li><i class="fa fa-envelope"></i>Dacsandiaphuong@gmail.com</li>
                                 <li>Giao hàng miễn phí cho tất cả đơn hàng 200K</li>
                             </ul>
                         </div>
@@ -40,23 +40,19 @@
                         <div class="header__top__right">
                             <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="/img/language.png" alt="">
+                                <img src="~/img/language.png" alt="">
                                 <div>Tiếng Việt</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
                                     <li><a href="#">English</a></li>
                                     <li><a href="#">Tiếng Việt</a></li>
-                                    <li><a href="#">Chinese</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="#"><i class="fa fa-user"></i>Đăng Nhập</a>
                             </div>
                         </div>
                     </div>
@@ -74,17 +70,12 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a asp-action="Index" asp-controller="Home">Trang chủ</a></li>
-
-                            @*<li><a href="/Home/Index.cshtml">Trang chủ</a></li>*@
-                           @* <li><a asp-action="Shop" asp-controller="Home">Sản phẩm</a></li>*@
                             <li><a href="@Url.Action("Shop", "Home")">Sản phẩm</a></li>
                             <li>
                                 <a asp-action="Shopdetail" asp-controller="Cart">Danh mục</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a asp-action="Shopdetail" asp-controller="Cart">Chi tiết sản phẩm</a></li>
-                                   @* <li><a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\cart\shopdetail.cshtml">Chi tiết sản phẩm</a></li>*@
                                     <li><a asp-action="Index" asp-controller="Cart">Giỏ hàng</a></li>
-                                   @* <li><a href="d:\mon-hoc\lap-trinh-web\dot-net-core\do-an-co-so\do-an-co-so\views\cart\index.cshtml">Giỏ hàng</a></li>*@
                                     <li><a asp-action="Checkout" asp-controller="Cart">Thanh toán</a></li>
                                     <li><a asp-action="Blogdetail" asp-controller="Blogs">Chi tiết bài viết</a></li>
                                 </ul>
@@ -100,7 +91,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
                             <li><a asp-action="Index" asp-controller="Cart"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>0 VND</span></div>
+                        <div class="header__cart__price">Đơn giá: <span>0 VND</span></div>
                     </div>
                 </div>
             </div>
@@ -164,8 +155,8 @@
                             <a href="./index.html"><img src="/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh</li>
-                            <li>Phone: 0943542523</li>
+                            <li>Địa chỉ: Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh</li>
+                            <li>SĐT: 0943542523</li>
                             <li>Email: Dacsandiaphuong@gmail.com</li>
                         </ul>
                     </div>
@@ -226,7 +217,7 @@
                             </p>
                         </div>
                        
-                        <div class="footer__copyright__payment"><img src="/img/payment-item.png" alt=""></div>
+                        <div class="footer__copyright__payment"><img src="~/img/payment-item.png" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -234,14 +225,14 @@
     </footer>
     <!-- Footer Section End -->
     <!-- Js Plugins -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.nice-select.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/jquery.slicknav.js"></script>
-    <script src="/js/mixitup.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/mixitup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

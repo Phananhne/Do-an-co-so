@@ -1,166 +1,200 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Do_an_co_so.Data;
+﻿using Do_an_co_so.Intefaces;
 using Do_an_co_so.Models;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Do_an_co_so.Controllers
 {
+    [AllowAnonymous]
     public class UserController : Controller
     {
-        private readonly Do_an_co_soContext _context;
-
-        public UserController(Do_an_co_soContext context)
+        private readonly IUserRepository _repo;
+        private readonly IUserManager _userManager;
+        private readonly IMailService _mailService;
+        private readonly ITokenRepository _tokenRepository;
+        public UserController(IUserRepository repo, IUserManager userManager, IMailService mailService, ITokenRepository tokenRepository)
         {
-            _context = context;
+            _repo = repo;
+            _userManager = userManager;
+            _mailService = mailService;
+            _tokenRepository = tokenRepository;
         }
 
-        // GET: Customers
-        public async Task<IActionResult> Index()
-        {
-              return _context.Customers != null ? 
-                          View(await _context.Customers.ToListAsync()) :
-                          Problem("Entity set 'Do_an_co_soContext.Customer'  is null.");
-        }
-
-        // GET: Customers/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Customers == null)
-            {
-                return NotFound();
-            }
-
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            return View(customer);
-        }
-
-        // GET: Customers/Create
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult Register()
         {
             return View();
         }
-
-        // POST: Customers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,CustomerFullName,CustomerUserName,CustomerPassword,CustomerDateCreated,CustomerEmail,CustomerAddress,CustomerPhone,CustomerState,CustomerImage")] Customer customer)
+        public async Task<IActionResult> RegisterAsync(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = _repo.Register(model);
+
+            // +1 line added for SignIn
+            await _userManager.SignIn(this.HttpContext, user, false);
+
+            return LocalRedirect("~/Home/Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+            if (User.Identity.IsAuthenticated)
+                await _userManager.SignOut(this.HttpContext);
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> LoginAsync(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("Index", "User");
+            var user = _repo.Validate(model);
+
+            if (user == null)
+                return View(model);
+
+            // +1 line added for SignIn
+            await _userManager.SignIn(this.HttpContext, user, model.RememberLogin);
+
+            return RedirectToAction("Index", "Home");
+        }
+        // delete [httppost]
+        public async Task<IActionResult> Logout(string returnUrl)
+        {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Index", "Home");
+            await _userManager.SignOut(this.HttpContext);
+
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPasswordAsync(ForgotViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var user = await _repo.HaveAccount(model);
+                if (!user)
+                {
+                    ViewBag.Message = "Your username or email is wrong!";
+                    return View(model);
+                }
+                string linkResetPassword = _repo.CreateResetPasswordLink(model.UserName);
+                await _mailService.SendEmailAsync(new MailRequest(model.Email, "Reset password", linkResetPassword));
+                return RedirectToAction("ShowMessage");
             }
-            return View(customer);
+            else
+            {
+                ViewBag.Message = "Please fill out all information before submitting!";
+                return View(model);
+            }
         }
-
-        // GET: Customers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        public IActionResult ShowMessage()
         {
-            if (id == null || _context.Customers == null)
-            {
-                return NotFound();
-            }
-
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            return View(customer);
+            ViewBag.Message = "Password reset link has been sent to your email. Check your mailbox.";
+            return View();
         }
-
-        // POST: Customers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpGet]
+        public IActionResult ResetPassword(string user, string token)
+        {
+            ViewBag.Message = null;
+            bool checkedToken = _tokenRepository.CheckToken(user, token);
+            if (checkedToken)
+            {
+                ViewBag.CustomerUserName = user;
+                ViewBag.Token = token;
+                return View();
+            }
+            return RedirectToAction("Login");
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerFullName,CustomerUserName,CustomerPassword,CustomerDateCreated,CustomerEmail,CustomerAddress,CustomerPhone,CustomerState,CustomerImage")] Customer customer)
+        public async Task<IActionResult> ResetPasswordAsync(ResetViewModel model)
         {
-            if (id != customer.CustomerId)
-            {
-                return NotFound();
-            }
-
+            ViewBag.Message = "hi";
             if (ModelState.IsValid)
             {
-                try
+                bool checkedToken = _tokenRepository.CheckToken(model.UserName, model.Token);
+                if (checkedToken)
                 {
-                    _context.Update(customer);
-                    await _context.SaveChangesAsync();
+                    await _repo.ResetPassWord(model);
+                    return RedirectToAction("Index", "Home");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CustomerExists(customer.CustomerId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login");
             }
-            return View(customer);
+            ViewBag.CustomerUserName = model.UserName;
+            ViewBag.Token = model.Token;
+            return View(model);
         }
-
-        // GET: Customers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet]
+        public IActionResult ChangeInfor()
         {
-            if (id == null || _context.Customers == null)
-            {
-                return NotFound();
-            }
-
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            return View(customer);
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+            int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            InforViewModel model = _repo.GetUserInfor(id);
+            return View(model);
         }
-
-        // POST: Customers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<IActionResult> ChangeInforAsync(InforViewModel model)
         {
-            if (_context.Customers == null)
-            {
-                return Problem("Entity set 'Do_an_co_soContext.Customer'  is null.");
-            }
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer != null)
-            {
-                _context.Customers.Remove(customer);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+
+            int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            IFormFileCollection files = HttpContext.Request.Form.Files;
+            await _repo.ChangeInforUser(model, id, files);
+
+            return RedirectToAction("Profile");
+        }
+        public async Task<IActionResult> ClearImage()
+        {
+            int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            await _repo.ClearImage(id);
+            return RedirectToAction("Profile");
         }
 
-        private bool CustomerExists(int id)
+        [HttpGet]
+        public IActionResult ChangePass()
         {
-          return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+
+            return View();
         }
-        
+        [HttpPost]
+        public async Task<IActionResult> ChangePassAsync(ChangePasswordViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+            if (!ModelState.IsValid) return View(model);
+            int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            string user = User.FindFirstValue(ClaimTypes.Name);
+            if (await _repo.HaveAccount(user, model.OldPassword))
+            {
+                await _repo.ChangePasswordUser(model, id);
+                return RedirectToAction("Profile");
+            }
+            ViewBag.Message = "Your password is wrong! Please take it again.";
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+
+            int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            InforViewModel model = _repo.GetUserInfor(id);
+
+
+            return View(model);
+        }
     }
 }

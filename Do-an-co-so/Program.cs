@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<Do_an_co_soContext>(options => options.UseSqlServer(
-       builder.Configuration.GetConnectionString("Do_an_co_soContext")
-    ?? throw new InvalidOperationException("Connection string 'Do_an_co_soContext' not found.")));
+       builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
