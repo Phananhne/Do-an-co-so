@@ -103,6 +103,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+app.UseSession();
+
 
 app.UseEndpoints(endpoints =>
 {

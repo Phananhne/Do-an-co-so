@@ -13,7 +13,7 @@
                     <ul class="featured__item__pic__hover">
                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.ProductId"><i class="fa fa-shopping-cart" data-id="@item.ProductId"></i></a></li>
                     </ul>
                 </div>
                 <div class="featured__item__text">
@@ -26,3 +26,18 @@
 
    
 </div>
+@section scripts{
+    <script>
+        $(document).ready(function(){
+            $(".fa fa-shopping-cart").click(function(){
+                $.ajax({
+                    url:"/Cart/AddToCart",
+                    data:{
+                        id:$(this).data("id"),
+                        SoLuong:1
+                    }
+                })
+            });
+        });
+    </script>
+}

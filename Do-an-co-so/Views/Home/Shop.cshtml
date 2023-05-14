@@ -98,7 +98,7 @@
                                                 {
                                                     <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                        <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.ProductName</h6>
@@ -119,7 +119,7 @@
                                                 {
                                                     <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                            <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.ProductName</h6>
@@ -134,7 +134,7 @@
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                        <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.ProductName</h6>
@@ -149,7 +149,7 @@
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                            <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.ProductName</h6>
@@ -164,7 +164,7 @@
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                            <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.@item.ProductName</h6>
@@ -179,7 +179,7 @@
                                                 {
                                                      <a href="#" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
-                                                        <img src="/Content/img/products/@item.ProductImage" alt="">
+                                                            <img src="~/img/main/products/@item.ProductImage" alt="">
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>@item.ProductName</h6>
@@ -216,7 +216,8 @@
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            
+                                                <li><a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.ProductId"><i class="fa fa-shopping-cart" data-id="@item.ProductId"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -270,3 +271,18 @@
     </div>
 </section>
 <!-- Product Section End -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".fa fa-shopping-cart").click(function () {
+                $.ajax({
+                    url: "/Cart/AddToCart",
+                    data: {
+                        id: $(this).data("id"),
+                        SoLuong: 1
+                    }
+                })
+            });
+        });
+    </script>
+}
