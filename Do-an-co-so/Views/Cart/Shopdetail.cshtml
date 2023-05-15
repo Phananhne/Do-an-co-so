@@ -68,17 +68,20 @@
                     <p>
                         @item.ProductDescription
                     </p>
-
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1" name="SoLuong">
+                    <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.ProductId">
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1" name="SoLuong">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                           <button style="border:0px"class="primary-btn" data-id="@item.ProductId">ADD TO CARD</button>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                    </form>
+                   @* *@
+           
                    
-                    <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.ProductId"><i class="primary-btn" data-id="@item.ProductId">ADD TO CARD</i></a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                             <li><b>Tình trạng: </b> <span>Còn hàng</span></li>
                             <li><b>Vận chuyển  </b> <span>01 ngày <samp>Nhận hàng miễn phí ngay hôm nay</samp></span></li>

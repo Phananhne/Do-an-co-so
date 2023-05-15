@@ -286,3 +286,14 @@
         });
     </script>
 }
+@section script{
+    <script>
+        $(document).ready(function () {
+            $(".ajax-add-to-cart").click(function(){
+                $.ajax({
+                    url:""
+                })
+            });
+        });
+    </script>
+}  
