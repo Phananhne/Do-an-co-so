@@ -1,17 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Do_an_co_so.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Do_an_co_so.Models
 {
     public class Blog
     {
         [Key]
+        [DisplayName("Mã bài viết")]
         public int BlogId { get; set; }
-        public string BlogName { get; set; }
-
+        [Required]
+        [DisplayName("Tên bài viết")]
+        public String? BlogName { get; set; }
+        [DisplayName("Nội dung")]
         public string? BlogContent { get; set; }
+        [DisplayName("Hình ảnh")]
         public string? BlogImage { get; set; }
-        public DateTime BlogDateCreated { get; set; }
-
-
+        [DisplayName("Ngày thêm")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BlogDateCreated { get; set; } = DateTime.Now;
     }
 }

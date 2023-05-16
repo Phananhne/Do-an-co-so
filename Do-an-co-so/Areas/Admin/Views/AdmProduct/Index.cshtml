@@ -96,7 +96,7 @@
                             @Html.DisplayFor(modelItem => item.ProductDateCreated)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
                         </td>
                         <td>
                             <a class="btn btn-warning rounded-pill" asp-action="Edit" asp-route-id="@item.ProductId"><i class="bi bi-pencil"></i></a>

@@ -1,57 +1,43 @@
-﻿using Do_an_co_so.Data;
+﻿using Do_an_co_so.Intefaces;
 using Do_an_co_so.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using System.Globalization;
 
 namespace Do_an_co_so.Controllers
 {
     public class HomeController : Controller
     {
-        /* private readonly ILogger<HomeController> _logger;
-
-         public HomeController(ILogger<HomeController> logger)
-         {
-             _logger = logger;
-         }*/
-        private readonly Do_an_co_soContext _context;
-
-        public HomeController(Do_an_co_soContext context)
+        CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+        private readonly IProductRepository _repo;
+        public HomeController(IProductRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
-
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+
+        public IActionResult Error(int statuscode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (statuscode == 404)
+                return View("NotFound");
+            else
+                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Shop()
+        public IActionResult About()
         {
             return View();
+
         }
-        public IActionResult Pages()
-        {
-            return View();
-        }
-        public IActionResult Blog()
+        public IActionResult Help()
         {
             return View();
         }
         public IActionResult Contact()
         {
-            /*return View(_context.Product.ToList());*/
             return View();
         }
 

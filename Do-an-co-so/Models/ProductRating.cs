@@ -1,23 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Do_an_co_so.Models;
 
 namespace Do_an_co_so.Models
 {
     public class ProductRating
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductRatingId { get; set; }
+        [Required]
+        [DisplayName("Số sao")]
         public int Stars { get; set; }
+        [DisplayName("Nội dung")]
+        [StringLength(200)]
         public string? RatingContent { get; set; }
-        public DateTime PRDateCreated { get; set; }
-
-        [ForeignKey("Product")]
+        [DisplayName("Ngày đánh giá")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime PRDateCreated { get; set; } = DateTime.Now;
         public int ProductId { get; set; }
-        public virtual Product? Product { get; set; }
-
-        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public virtual Customer? Customer { get; set; }
+        public Product Product { get; set; }
+        public Customer Customer { get; set; }
 
     }
 }

@@ -15,7 +15,7 @@ namespace Do_an_co_so.Repositories
         {
             return _context.OrderDetails
                            .Where(o => o.Order.DayOrder.Year == year)
-                           .GroupBy(d => new { d.Product.Categories.CategoryId, d.Product.Categories.CategoryName })
+                           .GroupBy(d => new { d.Product.Category.CategoryId, d.Product.Category.CategoryName })
                            .Select(t => new Table
                            {
                                Key = t.Key.CategoryName,

@@ -1,103 +1,60 @@
-﻿@model IEnumerable<Do_an_co_so.Models.Categories>
-
-@{
-    ViewData["Title"] = "Contact";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+    ViewData["Title"] = "Liên hệ";
 }
 
-<!-- Hero Section End -->
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.png" style="">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Liên hệ với chúng tôi</h2>
-                    <div class="breadcrumb__option">
-                        <a href="./index.html">Home</a>
-                        <span>Liên hệ với chúng tôi</span>
-                    </div>
-                </div>
+<div class="container margin_60">
+    <div class="main_title">
+        <h2> Liên hệ Thực phẩm Bình Định </h2>
+        <p> Trang thương mại điện tử về đặc sản Bình Định hàng đầu Việt Nam </p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="box_contacts">
+                <i class="ti-support"> </i>
+                <h2> Trung tâm Bình Định Food</h2>
+                <a href="#0"> +94 423-23-221 </a> - <a href="#0"> help  Bình Định Food.com </a>
+                <small> MON đến FRI 9 giờ sáng - 6 giờ tối Thứ 7, 9 giờ sáng - 2 giờ chiều </small>
             </div>
         </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
-<!-- Contact Section Begin -->
-<section class="contact spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                <div class="contact__widget">
-                    <span class="icon_phone"></span>
-                    <h4>Điện thoại</h4>
-                    <p>0943543534</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                <div class="contact__widget">
-                    <span class="icon_pin_alt"></span>
-                    <h4>Địa chỉ</h4>
-                    <p>Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                <div class="contact__widget">
-                    <span class="icon_clock_alt"></span>
-                    <h4>Thời gian hoạt động</h4>
-                    <p>6:30 am to 22:00 pm</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                <div class="contact__widget">
-                    <span class="icon_mail_alt"></span>
-                    <h4>Email</h4>
-                    <p>Dacsandiaphuong@gmail.com</p>
-                </div>
+        <div class="col-lg-4">
+            <div class="box_contacts">
+                <i class="ti-map-alt"> </i>
+                <h2> Showroom Thực phẩm Bình Định </h2>
+                <div> Quy Nhơn, Bình Định </div>
+                <small> MON đến FRI 9 giờ sáng - 6 giờ tối Thứ 7, 9 giờ sáng - 2 giờ chiều </small>
             </div>
         </div>
-    </div>
-</section>
-<!-- Contact Section End -->
-<!-- Map Begin -->
-<div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17819.577979226706!2d106.7858665296927!3d10.854240637766576!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527c3debb5aad%3A0x5fb58956eb4194d0!2zxJDhuqFpIEjhu41jIEh1dGVjaCBLaHUgRQ!5e0!3m2!1sen!2s!4v1682733442472!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="map-inside">
-        <i class="icon_pin"></i>
-        <div class="inside-widget">
-            <h4>Hutech</h4>
-            <ul>
-                <li>Phone: 0953453254</li>
-                <li>Add: Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh</li>
-            </ul>
+        <div class="col-lg-4">
+            <div class="box_contacts">
+                <i class="ti-package"> </i>
+                <h2> Đơn hàng ăn uống ở Bình Định </h2>
+                <a href="#0"> +94 423-23-221 </a> - <a href="#0"> order  Bình Định Food.com </a>
+                <small> MON đến FRI 9 giờ sáng - 6 giờ tối Thứ 7, 9 giờ sáng - 2 giờ chiều </small>
+            </div>
         </div>
     </div>
 </div>
-<!-- Map End -->
-<!-- Contact Form Begin -->
-<div class="contact-form spad">
-    <div class="container">
+<div class="bg_white">
+    <div class="container margin_60_35">
+        <h4 class="pb-3"> Gửi hàng cho chúng tôi </h4>
         <div class="row">
-            <div class="col-lg-12">
-                <div class="contact__form__title">
-                    <h2>Để lại tin nhắn</h2>
+            <div class="col-lg-4 col-md-6 add_bottom_25">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Name *">
                 </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" placeholder="Email *">
+                </div>
+                <div class="form-group">
+                <textarea class="form-control" style="height: 150px;" placeholder="Message *"> </textarea>
+                </div>
+                <div class="form-group">
+                    <input class="btn_1 full-width" type="submit" value="Gửi">
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 add_bottom_25">
+                <iframe class="map_contact" src="https://maps.google.com/maps?width=980&amp;height=400&amp;hl=en&amp;q=quy nhơn, Bình Định&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" allowfullscreen> </iframe>
             </div>
         </div>
-        <form action="#">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Tên của bạn">
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Email của bạn">
-                </div>
-                <div class="col-lg-12 text-center">
-                    <textarea placeholder="Nội dung"></textarea>
-                    <button type="submit" class="site-btn">Gửi tin nhắn</button>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
-<!-- Contact Form End -->

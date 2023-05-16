@@ -1,21 +1,32 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Do_an_co_so.Models
 {
     public class Order
     {
-        [Key] 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DisplayName("Mã đơn đặt hàng")]
         public int OrderId { get; set; }
-        public DateTime DayOrder { get; set; }
-        public DateTime DayDelivery { get; set; }
+        [DisplayName("Ngày đặt hàng")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
+        public DateTime DayOrder { get; set; }
+        [DisplayName("Ngày vận chuyển")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+        public DateTime DayDelivery { get; set; }
+        [DisplayName("Đã trả tiền")]
         public bool PaidState { get; set; }
+        [DisplayName("Trạng thái đơn hàng")]
         public bool DeliveryState { get; set; }
-        public float TotalMoney { get; set; }
+        [DisplayName("Tổng tiền")]
+        public decimal TotalMoney { get; set; }
+        public Customer Customer { get; set; }
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public virtual Customer? Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

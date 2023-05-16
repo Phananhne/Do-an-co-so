@@ -74,7 +74,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
                         && x.DayOrder.Year == DateTime.Now.Year
                         ).Sum(x => x.TotalMoney) / 100000;
 
-            ViewBag.revenueChart = JsonSerializer.Serialize(new List<Double>
+            ViewBag.revenueChart = JsonSerializer.Serialize(new List<Decimal>
             {
                 revenueChart2,
                 revenueChart2,

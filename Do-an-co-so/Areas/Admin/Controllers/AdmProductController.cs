@@ -29,7 +29,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            var do_an_co_soContext = _context.Products.Include(p => p.Categories);
+            var do_an_co_soContext = _context.Products.Include(p => p.Category);
             var obj = await do_an_co_soContext.ToListAsync();
             return View(obj.ToPagedList(page, 10));
         }
@@ -134,7 +134,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Categories)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -168,7 +168,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Categories)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {

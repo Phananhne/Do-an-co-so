@@ -1,8 +1,8 @@
-﻿using Do_an_co_so.Intefaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using Do_an_co_so.Intefaces;
+using System.Security.Claims;
 using Do_an_co_so.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Do_an_co_so.Controllers
 {
