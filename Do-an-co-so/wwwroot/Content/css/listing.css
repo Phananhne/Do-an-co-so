@@ -1,4 +1,4 @@
-/*============================================================================================*/
+﻿/*============================================================================================*/
 /* LISTING */
 /*============================================================================================*/
 .toolbox {
@@ -294,9 +294,11 @@
   padding: 5px 0 0 0;
   margin: 0 0 15px 0;
 }
-.filter_type ul li {
-  margin-bottom: 5px;
-}
+    .filter_type ul li {
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ffcc00; /* Đường gạch ngăn cách với màu vàng */
+        padding-bottom: 5px; /* Khoảng cách từ đường gạch đến nội dung của mỗi option */
+    }
 .filter_type ul li:last-child {
   margin-bottom: 0;
 }
@@ -332,9 +334,9 @@
   right: 10px;
   top: 8px;
 }
-.filter_type.version_2 h4 a.opened {
-  background-color: #f8f8f8;
-}
+    .filter_type.version_2 h4 a.opened {
+        background-color: #ffcc00;
+    }
 .filter_type.version_2 h4 a.opened:after {
   content: "\e64b";
   transform: rotate(180deg);

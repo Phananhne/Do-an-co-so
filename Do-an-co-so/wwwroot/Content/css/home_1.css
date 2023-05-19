@@ -1,18 +1,20 @@
-/*============================================================================================*/
+﻿/*============================================================================================*/
 /* HOME */
 /*============================================================================================*/
 ul#banners_grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+    list-style: none;
+    padding: 0ul#banners_grid li margin: 0;
+    width: 100%;
+    margin-top: -530px;
 }
 ul#banners_grid li {
   position: relative;
-  width: 33.33%;
+  width: 23.33%;
   float: left;
   border-top: 5px solid #fff;
   border-right: 5px solid #fff;
+  margin-left: 76%;
+  height:180px;
 }
 ul#banners_grid li:last-child {
   border-right: none;
@@ -25,12 +27,13 @@ ul#banners_grid li:last-child {
   }
 }
 ul#banners_grid li a.img_container {
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-  display: block;
-  width: 100%;
-  height: 250px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 165px;
+    animation: moveUp 2s linear infinite;
 }
 @media (max-width: 767px) {
   ul#banners_grid li a.img_container {
@@ -75,6 +78,7 @@ ul#banners_grid li a.img_container img {
     height: auto;
   }
 }
+
 ul#banners_grid li a.img_container:hover img {
   -webkit-transform: translate(-50%, -50%) scale(1.02);
   -moz-transform: translate(-50%, -50%) scale(1.02);
@@ -161,6 +165,7 @@ ul#banners_grid li a.img_container .short_info:hover div {
   -o-transform: translateY(-50px);
   transform: translateY(-50px);
 }
+
 
 .categories_grid a {
   display: block;
@@ -549,12 +554,12 @@ a.box_news:hover img {
   transform: translate(-50%, -50%) scale(1);
 }
 a.box_news:hover h4 {
-  color: #004dda;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+    color: #ff3300;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 a.box_news ul {
   margin: 0;
