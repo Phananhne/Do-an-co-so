@@ -18,7 +18,7 @@ namespace Do_an_co_so.Models
         [DisplayName("Tên sản phẩm")]
         public string ProductName { get; set; }
         [DisplayName("Giá")]
-        public decimal ProductPrice { get; set; }
+        public double ProductPrice { get; set; }
         [DisplayName("Nội dung")]
         public string? ProductDescription { get; set; }
         [DisplayName("Số lượng")]

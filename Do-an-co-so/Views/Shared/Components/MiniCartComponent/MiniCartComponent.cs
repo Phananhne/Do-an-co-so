@@ -15,9 +15,9 @@ namespace Do_an_co_so.Views.Shared.Components.MiniCartComponent
         {
             _cartRepo = cartRepo;
         }
-        public decimal TotalMoney()
+        public double TotalMoney()
         {
-            decimal totalMoney = 0;
+            double totalMoney = 0;
             List<Item> listCart = _cartRepo.Get(HttpContext.Session);
             if (listCart != null)
             {

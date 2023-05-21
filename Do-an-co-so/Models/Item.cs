@@ -8,7 +8,7 @@ namespace Do_an_co_so.Models
         [DisplayName("Số lượng")]
         public int Quantity { get; set; }
         [DisplayName("Tổng tiền")]
-        public decimal TotalCost
+        public double TotalCost
         {
             get
             {

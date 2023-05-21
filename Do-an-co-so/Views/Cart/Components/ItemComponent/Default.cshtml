@@ -23,7 +23,7 @@
 	</div>
 </td>
 <td>
-	<strong>@Convert.ToDecimal(@Model.Product.ProductPrice -(@Convert.ToDecimal(@Model.Product.ProductPrice) * @Convert.ToDecimal(@Model.Product.ProductDiscount) / 100)).ToString("#,###", cul.NumberFormat) Đ</strong>
+	<strong>@Convert.ToDouble(@Model.Product.ProductPrice -(@Convert.ToDouble(@Model.Product.ProductPrice) * @Convert.ToDouble(@Model.Product.ProductDiscount) / 100)).ToString("#,###", cul.NumberFormat) Đ</strong>
 
 </td>
 <td class="options">

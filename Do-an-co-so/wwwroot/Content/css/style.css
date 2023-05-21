@@ -1891,7 +1891,7 @@ a {
   outline: none;
 }
 a:hover, a:focus {
-  color: #111;
+  color: #ffcc00;
   text-decoration: none;
   outline: none;
 }
@@ -2270,7 +2270,7 @@ header ul.top_tools > li .dropdown-access .dropdown-menu a.btn_1.outline {
 }
 header ul.top_tools > li .dropdown-cart .dropdown-menu a.btn_1:hover,
 header ul.top_tools > li .dropdown-access .dropdown-menu a.btn_1:hover {
-  color: #fff !important;
+  color: #000 !important;
   background-color: #ffcc00;
 }
 header .main_nav {
@@ -2575,7 +2575,7 @@ header.version_2 .search_mob_wp .btn_1 {
 }
 header.version_2 .search_mob_wp .btn_1:hover {
   background-color: #083487;
-  color: #fff !important;
+  color: #000 !important;
 }
 
 /*-------- 1.4 Navigation --------*/
@@ -3167,7 +3167,7 @@ nav a.open_close#close_in > i:hover {
   padding: 0 10px 0 15px;
 }
 .menu ul li ul li a:hover {
-    color: white;
+    color: #000;
     background-color: #ffcc00;
     background-color: rgba(0, 77, 218, 0.04);
     }
@@ -4709,7 +4709,7 @@ body.modal-open .mm-slideout {
   background-color: white;
 }
 .grid_item ul li a:hover i {
-  color: #fff;
+  color: #000;
 }
 .grid_item ul li a span {
   display: none;

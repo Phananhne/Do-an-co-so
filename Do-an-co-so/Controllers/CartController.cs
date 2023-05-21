@@ -24,7 +24,7 @@ namespace Do_an_co_so.Controllers
         private readonly IConfiguration _configuration;
         private readonly IFavoriteRepository _repoFavorite;
 
-        private decimal shippingCost = 30000;
+        private float shippingCost = 30000;
         public CartController(ICartRepository cartRepo, IProductRepository productRepo, IOrderDetailRepository orderDetailRepo, IOrderRepository orderRepo, IUserRepository userRepository, IConfiguration configuration, IFavoriteRepository favoriteRepository)
         {
             _cartRepo = cartRepo;
@@ -35,7 +35,7 @@ namespace Do_an_co_so.Controllers
             _repoFavorite = favoriteRepository;
             _configuration = configuration;
         }
-        private void VnPayPayment(decimal totalMoney, int orderId)
+        private void VnPayPayment(float totalMoney, int orderId)
         {
             string vnp_Returnurl = _configuration["VnPaySettings:vnp_Returnurl"]; //URL nhan ket qua tra ve 
             string vnp_Url = _configuration["VnPaySettings:vnp_Url"]; //URL thanh toan cua VNPAY 
@@ -233,9 +233,9 @@ namespace Do_an_co_so.Controllers
             }
             return ViewComponent("ItemComponent", cart);
         }
-        public decimal TotalMoney()
+        public double TotalMoney()
         {
-            decimal totalMoney = 0;
+            double totalMoney = 0;
             List<Item> listCart = _cartRepo.Get(HttpContext.Session);
             if (listCart != null)
             {
@@ -343,7 +343,7 @@ namespace Do_an_co_so.Controllers
                 or.PaidState = false;
                 // build payment momo or vnpay
                 or.DeliveryState = false;
-                or.TotalMoney = totalMoney;
+                or.TotalMoney = (float)totalMoney;
                 await _orderRepo.AddAsync(or);
                 await _orderRepo.SaveAsync();
 
@@ -363,11 +363,11 @@ namespace Do_an_co_so.Controllers
                 int paymentMethod = Convert.ToInt32(form["ChoosePaymentMethod"]);
                 if (paymentMethod == 2)
                 {
-                    VnPayPayment(totalMoney, or.OrderId);
+                    VnPayPayment((float)totalMoney, or.OrderId);
                 }
                 else if (paymentMethod == 1)
                 {
-                    MOMOPayment(totalMoney, or.OrderId);
+                    MOMOPayment((decimal)totalMoney, or.OrderId);
                 }
                 else if (paymentMethod == 0)
                 {

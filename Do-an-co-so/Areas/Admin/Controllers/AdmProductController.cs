@@ -94,7 +94,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
                 for (int row = 9; row <= rowCount; row++)
                 {
                     var productName = worksheet.Cells[row, 1].Value?.ToString().Trim();
-                    var productPrice = decimal.Parse(worksheet.Cells[row, 2].Value?.ToString().Trim());
+                    var productPrice = float.Parse(worksheet.Cells[row, 2].Value?.ToString().Trim());
                     var productDescription = worksheet.Cells[row, 3].Value?.ToString().Trim();
                     var productAmount = int.Parse(worksheet.Cells[row, 4].Value?.ToString().Trim());
                     var productDiscount = int.Parse(worksheet.Cells[row, 5].Value?.ToString().Trim());
