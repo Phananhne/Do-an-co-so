@@ -31,7 +31,7 @@ builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddTransient<IMailService, MailService>();
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>

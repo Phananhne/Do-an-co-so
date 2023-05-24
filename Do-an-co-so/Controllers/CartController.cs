@@ -394,8 +394,9 @@ namespace Do_an_co_so.Controllers
             int id = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             IEnumerable<Order> obj = await _orderRepo.GetListAsync(filter: x => x.CustomerId == id);
-            return View(obj);
-        }
+			return View(obj);
+
+		}
         // Your order detail
         public async Task<IActionResult> OderDetail(int id)
         {
