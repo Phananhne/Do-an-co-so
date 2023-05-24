@@ -18,8 +18,8 @@ namespace Do_an_co_so.Areas.Admin.Views.AdmHome.Components.RevenueComponent
         }
         public IViewComponentResult Invoke(string revenueOrder)
         {
-            float objRevenue = 0;
-            float objLastRevenue = 0;
+            double objRevenue = 0;
+            double objLastRevenue = 0;
             switch (revenueOrder)
             {
                 case "today":

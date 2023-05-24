@@ -23,7 +23,7 @@ namespace Do_an_co_so.Models
         [DisplayName("Trạng thái đơn hàng")]
         public bool DeliveryState { get; set; }
         [DisplayName("Tổng tiền")]
-        public float TotalMoney { get; set; }
+        public double TotalMoney { get; set; }
         public Customer Customer { get; set; }
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
