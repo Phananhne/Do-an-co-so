@@ -1805,7 +1805,7 @@ hr {
     color: #000;
     text-transform: uppercase;
     width: 100%;
-    margin-top: -70px;
+    margin-top: -100px;
     text-decoration: underline;
 }
 @media (max-width: 767px) {

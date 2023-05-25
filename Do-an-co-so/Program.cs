@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Do_an_co_so.Data;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +34,9 @@ builder.Services.AddTransient<IMailService, MailService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDistributedMemoryCache();
-
+builder.Services.AddTransient<IEmailSender,EmailSender>();
+/*builder.Services.Configure<AuthMessageSenderOptions>(Configuration);
+*/
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(10);

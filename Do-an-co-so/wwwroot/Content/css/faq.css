@@ -35,20 +35,20 @@ a.box_topic:hover {
   transform: translateY(-10px);
 }
 a.box_topic i {
-  display: inline-block;
-  font-size: 51px;
-  font-size: 3.1875rem;
-  color: #004dda;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
-  background-color: #0044c2;
-  background-color: rgba(0, 77, 218, 0.05);
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-  margin-bottom: 15px;
+    display: inline-block;
+    font-size: 51px;
+    font-size: 3.1875rem;
+    color: #ffcc00;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #0044c2;
+    background-color: rgba(0, 77, 218, 0.05);
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 15px;
 }
 a.box_topic h3 {
   font-size: 18px;

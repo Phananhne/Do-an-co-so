@@ -86,11 +86,11 @@
   box-shadow: 0px 3px 0px 0px #ebedef;
 }
 .box_feat i {
-  font-size: 52px;
-  font-size: 3.25rem;
-  color: #004dda;
-  margin-bottom: 10px;
-  display: inline-block;
+    font-size: 52px;
+    font-size: 3.25rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 .box_feat h3 {
   font-size: 18px;

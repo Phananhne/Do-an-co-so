@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\AdmStatistics\Components\StaticOrdersByUsersComponent\" />
+    <Folder Include="wwwroot\Content\img\banner\" />
   </ItemGroup>
 
 </Project>
