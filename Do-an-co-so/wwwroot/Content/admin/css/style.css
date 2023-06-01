@@ -19,8 +19,8 @@ body {
 }
 
 a {
-  color: #4154f1;
-  text-decoration: none;
+    color: #ffcc00;
+    text-decoration: none;
 }
 
 a:hover {
@@ -252,7 +252,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  color: #ffcc00;
   font-family: "Poppins", sans-serif;
 }
 
@@ -386,10 +386,10 @@ h6 {
 }
 
 .logo span {
-  font-size: 26px;
-  font-weight: 700;
-  color: #012970;
-  font-family: "Nunito", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffcc00;
+    font-family: "Nunito", sans-serif;
 }
 
 .header {
@@ -1047,7 +1047,7 @@ h6 {
 }
 
 .profile .profile-overview .card-title {
-  color: #012970;
+    color: #ffcc00;
 }
 
 .profile .profile-overview .label {

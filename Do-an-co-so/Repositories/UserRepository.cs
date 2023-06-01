@@ -146,7 +146,7 @@ namespace Do_an_co_so.Repositories
             user.CustomerFullName = model.FullName;
             user.CustomerEmail = model.Email;
             user.CustomerPhone = model.Phone;
-            //user.CustomerImage = model.Image;
+            user.CustomerImage = model.Image;
             user.CustomerAddress = model.Address;
 
             foreach (var Image in files)
@@ -164,6 +164,7 @@ namespace Do_an_co_so.Repositories
                             user.CustomerImage = fileName;
                         }
                     }
+
                 }
             }
             await _context.SaveChangesAsync();

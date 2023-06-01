@@ -8,7 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Do_an_co_so.Data;
 using System.Configuration;
 
-var builder = WebApplication.CreateBuilder(args);
+
+ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<Do_an_co_soContext>(options => options.UseSqlServer(
