@@ -86,11 +86,19 @@
   box-shadow: 0px 3px 0px 0px #ebedef;
 }
 .box_feat i {
+<<<<<<< HEAD
     font-size: 52px;
     font-size: 3.25rem;
     color: #ffcc00;
     margin-bottom: 10px;
     display: inline-block;
+=======
+  font-size: 52px;
+  font-size: 3.25rem;
+  color: #ffcc00;
+  margin-bottom: 10px;
+  display: inline-block;
+>>>>>>> thêm sản phẩm bằng file excel
 }
 .box_feat h3 {
   font-size: 18px;

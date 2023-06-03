@@ -35,6 +35,7 @@ a.box_topic:hover {
   transform: translateY(-10px);
 }
 a.box_topic i {
+<<<<<<< HEAD
     display: inline-block;
     font-size: 51px;
     font-size: 3.1875rem;
@@ -49,6 +50,22 @@ a.box_topic i {
     height: 100px;
     line-height: 100px;
     margin-bottom: 15px;
+=======
+  display: inline-block;
+  font-size: 51px;
+  font-size: 3.1875rem;
+  color: #ffcc00;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #0044c2;
+  background-color: rgba(0, 77, 218, 0.05);
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: 15px;
+>>>>>>> thêm sản phẩm bằng file excel
 }
 a.box_topic h3 {
   font-size: 18px;
@@ -103,13 +120,13 @@ a.box_topic_2 i {
   top: 30px;
   font-size: 52px;
   font-size: 3.25rem;
-  color: #004dda;
+  color: #ffcc00;
   margin-bottom: 10px;
 }
 a.box_topic_2 h3 {
   font-size: 18px;
   font-size: 1.125rem;
-  color: #004dda;
+  color: #ffcc00;
 }
 a.box_topic_2 p {
   font-size: 16px;
@@ -133,7 +150,7 @@ a.box_topic_2 p {
   display: block;
 }
 .list_articles ul li a:hover {
-  color: #004dda;
+  color: #ffcc00;
   -webkit-transform: translateX(5px);
   -moz-transform: translateX(5px);
   -ms-transform: translateX(5px);
