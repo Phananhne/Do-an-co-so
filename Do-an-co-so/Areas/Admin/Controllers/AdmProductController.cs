@@ -12,7 +12,10 @@ using X.PagedList;
 using System.Security.Claims;
 using Do_an_co_so.Data;
 using OfficeOpenXml;
-
+using System.Data;
+using Microsoft.Data.SqlClient;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace Do_an_co_so.Areas.Admin.Controllers
 {
@@ -21,11 +24,13 @@ namespace Do_an_co_so.Areas.Admin.Controllers
     {
         private readonly Do_an_co_soContext _context;
         private readonly IWebHostEnvironment _appEnvironment;
+        private readonly IConfiguration Configuration;
 
-        public AdmProductController(Do_an_co_soContext context, IWebHostEnvironment appEnvironment)
+        public AdmProductController(Do_an_co_soContext context, IWebHostEnvironment appEnvironment, IConfiguration _configuration)
         {
             _context = context;
             _appEnvironment = appEnvironment;
+            Configuration = _configuration;
         }
         public async Task<IActionResult> Index(int page = 1)
         {
@@ -77,53 +82,87 @@ namespace Do_an_co_so.Areas.Admin.Controllers
 
         public IActionResult UploadData()
         {
-            if (!User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) != "Admin")
-                return RedirectToAction("Login", "AdmAccount");
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
         [HttpPost]
-        public IActionResult UploadData(IFormFile file)
+        public IActionResult UploadData(IFormFile postedFile)
         {
-            using (var package = new ExcelPackage(file.OpenReadStream()))
+            if (postedFile != null)
             {
-                var worksheet = package.Workbook.Worksheets[0];
-                var rowCount = worksheet.Dimension.Rows;
-                var columnCount = worksheet.Dimension.Columns;
-                for (int row = 9; row <= rowCount; row++)
+                //Create a Folder.
+                string path = Path.Combine(this._appEnvironment.WebRootPath);
+                if (!Directory.Exists(path))
                 {
-                    var productName = worksheet.Cells[row, 1].Value?.ToString().Trim();
-                    var productPrice = float.Parse(worksheet.Cells[row, 2].Value?.ToString().Trim());
-                    var productDescription = worksheet.Cells[row, 3].Value?.ToString().Trim();
-                    var productAmount = int.Parse(worksheet.Cells[row, 4].Value?.ToString().Trim());
-                    var productDiscount = int.Parse(worksheet.Cells[row, 5].Value?.ToString().Trim());
-                    var productImage = worksheet.Cells[row, 6].Value?.ToString().Trim();
-                    var productDateCreated = DateTime.Parse(worksheet.Cells[row, 7].Value?.ToString().Trim());
-                    var categoryId = int.Parse(worksheet.Cells[row, 8].Value?.ToString().Trim());
-                    var productRating = int.Parse(worksheet.Cells[row, 9].Value?.ToString().Trim());
-
-                    var product = new Product
-                    {
-                        ProductName = productName,
-                        ProductPrice = productPrice,
-                        ProductDescription = productDescription,
-                        ProductAmount = productAmount,
-                        ProductDiscount = productDiscount,
-                        ProductImage = productImage,
-                        ProductDateCreated = productDateCreated,
-                        CategoryId = categoryId,
-                        ProductRating = productRating
-
-                    };
-
-                    _context.Products.Add(product);
+                    Directory.CreateDirectory(path);
                 }
 
-                _context.SaveChanges();
-            }
+                //Save the uploaded Excel file.
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string filePath = Path.Combine(path, fileName);
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
 
-            return RedirectToAction("Index");
+                //Read the connection string for the Excel file.
+                string conString = this.Configuration.GetConnectionString("ExcelConString");
+                DataTable dt = new DataTable();
+                conString = string.Format(conString, filePath);
+
+                using (OleDbConnection connExcel = new OleDbConnection(conString))
+                {
+                    using (OleDbCommand cmdExcel = new OleDbCommand())
+                    {
+                        using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                        {
+                            cmdExcel.Connection = connExcel;
+
+                            //Get the name of First Sheet.
+                            connExcel.Open();
+                            DataTable dtExcelSchema;
+                            dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                            string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                            connExcel.Close();
+
+                            //Read Data from First Sheet.
+                            connExcel.Open();
+                            cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+                            odaExcel.SelectCommand = cmdExcel;
+                            odaExcel.Fill(dt);
+                            connExcel.Close();
+                        }
+                    }
+                }
+
+                //Insert the Data read from the Excel file to Database Table.
+                conString = this.Configuration.GetConnectionString("DefaultConnection");
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                    {
+                        //Set the database table name.
+                        sqlBulkCopy.DestinationTableName = "dbo.Product";
+
+                        //[OPTIONAL]: Map the Excel columns with that of the database table.
+                        sqlBulkCopy.ColumnMappings.Add("ProductId", "ProductId");
+                        sqlBulkCopy.ColumnMappings.Add("ProductName", "ProductName");
+                        sqlBulkCopy.ColumnMappings.Add("ProductPrice", "ProductPrice");
+                        sqlBulkCopy.ColumnMappings.Add("ProductDescription", "ProductDescription");
+                        sqlBulkCopy.ColumnMappings.Add("ProductAmount", "ProductAmount");
+                        sqlBulkCopy.ColumnMappings.Add("ProductDiscount", "ProductDiscount");
+                        sqlBulkCopy.ColumnMappings.Add("ProductImage", "ProductImage");
+                        sqlBulkCopy.ColumnMappings.Add("ProductDateCreated", "ProductDateCreated");
+                        sqlBulkCopy.ColumnMappings.Add("CategoryId", "CategoryId");
+                        sqlBulkCopy.ColumnMappings.Add("ProductRating", "ProductRating");
+
+                        con.Open();
+                        sqlBulkCopy.WriteToServer(dt);
+                        con.Close();
+                    }
+                }
+            }
+            return View();
         }
 
         public async Task<IActionResult> Delete(int? id)
