@@ -23,6 +23,8 @@ namespace Do_an_co_so.Models
         public decimal UnitPrice { get; set; }
         [DisplayName("Số lượng")]
 
+
+
         public int Quantity { get; set; }
 
         public virtual Order Order { get; set; }

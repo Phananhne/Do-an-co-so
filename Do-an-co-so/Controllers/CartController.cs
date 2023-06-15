@@ -133,75 +133,7 @@ namespace Do_an_co_so.Controllers
             }
             return RedirectToAction("Order", "Cart", new { orderFailed = true });
         }
-        public void MOMOPayment(decimal totalMoney, int orderID)
-        {
-            string endpoint = _configuration["MOMOSettings:endpoint"];
-            string partnerCode = _configuration["MOMOSettings:partnerCode"];
-            string accessKey = _configuration["MOMOSettings:accessKey"];
-            string serectkey = _configuration["MOMOSettings:serectkey"];
-            string orderInfo = "thanh_toan";
-            string redirectUrl = _configuration["MOMOSettings:returnMOMO"];
-            string ipnUrl = _configuration["MOMOSettings:returnMOMO"];
-            string requestType = "captureWallet";
 
-            string amount = Convert.ToInt32(totalMoney).ToString();
-            string orderId = orderID.ToString();
-            string requestId = Guid.NewGuid().ToString();
-            string extraData = "";
-            string rawHash = "accessKey=" + accessKey +
-                "&amount=" + amount +
-                "&extraData=" + extraData +
-                "&ipnUrl=" + ipnUrl +
-                "&orderId=" + orderId +
-                "&orderInfo=" + orderInfo +
-                "&partnerCode=" + partnerCode +
-                "&redirectUrl=" + redirectUrl +
-                "&requestId=" + requestId +
-                "&requestType=" + requestType
-                ;
-            log.Debug("rawHash = " + rawHash);
-
-            MoMoSecurity crypto = new MoMoSecurity();
-            //sign signature SHA256
-            string signature = crypto.signSHA256(rawHash, serectkey);
-            log.Debug("Signature = " + signature);
-            //build body json request
-            JObject message = new JObject
-            {
-                { "partnerCode", partnerCode },
-                { "partnerName", "Test" },
-                { "storeId", "MomoTestStore" },
-                { "requestId", requestId },
-                { "amount", amount },
-                { "orderId", orderId },
-                { "orderInfo", orderInfo },
-                { "redirectUrl", redirectUrl },
-                { "ipnUrl", ipnUrl },
-                { "lang", "en" },
-                { "extraData", extraData },
-                { "requestType", requestType },
-                { "signature", signature }
-
-            };
-            log.Debug("Json request to MoMo: " + message.ToString());
-            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
-            ViewBag.endpoint = responseFromMomo;
-            JObject jmessage = JObject.Parse(responseFromMomo);
-            //  ViewBag.hi = responseFromMomo;
-            log.Debug("Return from MoMo: " + jmessage.ToString());
-            System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
-        }
-        public async Task<IActionResult> MOMOResult()
-        {
-            if (HttpContext.Request.Query.Count > 0)
-            {
-                string orderID = HttpContext.Request.Query["orderId"];
-                string findId = new String(orderID.Where(Char.IsDigit).ToArray());
-                int orderId = Convert.ToInt32(findId);
-                await _orderRepo.UpdatePaymentState(orderId);
-            }
-            return RedirectToAction("Index", "Home");
-        }
         public IActionResult Index()
         {
             List<Item> listCart = _cartRepo.Get(HttpContext.Session);
@@ -364,10 +296,6 @@ namespace Do_an_co_so.Controllers
                 if (paymentMethod == 2)
                 {
                     VnPayPayment((float)totalMoney, or.OrderId);
-                }
-                else if (paymentMethod == 1)
-                {
-                    MOMOPayment((decimal)totalMoney, or.OrderId);
                 }
                 else if (paymentMethod == 0)
                 {

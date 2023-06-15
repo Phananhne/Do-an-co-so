@@ -109,11 +109,11 @@
             </tbody>
         </table>
         <!-- End Table with hoverable rows -->
-        @*        <div class="pagination__wrapper">
-        <ul class="pagination">
-        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new{ page }))
-        </ul>
-        </div>*@
+        <div class="pagination__wrapper">
+            <ul class="pagination">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new{ page }))
+            </ul>
+        </div>
     </div>
 </div>
 

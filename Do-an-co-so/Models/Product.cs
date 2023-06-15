@@ -21,6 +21,8 @@ namespace Do_an_co_so.Models
         public double ProductPrice { get; set; }
         [DisplayName("Nội dung")]
         public string? ProductDescription { get; set; }
+
+
         [DisplayName("Số lượng")]
         public int ProductAmount { get; set; }
         [DisplayName("Khuyến mãi")]

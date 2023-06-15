@@ -67,7 +67,7 @@ namespace Do_an_co_so.Areas.Admin.Controllers
         {
             if (_context.OrderDetails == null)
             {
-                return Problem("Entity set 'BinhDinhFoodDbContext.OrderDetails'  is null.");
+                return Problem("Entity set 'Do_an_co_soContext.OrderDetails'  is null.");
             }
             var orderDetail = await _context.OrderDetails.FindAsync(id);
             if (orderDetail != null)
